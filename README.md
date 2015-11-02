@@ -19,4 +19,4 @@ You will also need another table that holds student ID numbers, in order to acce
 online forms and fill them out, the system will ask for a student ID.
 Also, remember to match the name of your localhost, database name and password in the
 database connection.
-The first file to run is the "index.php" file.
+The first file to run is the "index.php" file. k
