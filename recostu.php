@@ -98,10 +98,10 @@ $sqli =  $myseli-> query ("SELECT * FROM majors");
 
 
 
-<h3>Change Major Form -- Please Fill out all sections of the form</h3>
+<h3>Change Major Application -- Fill Out All Sections</h3>
 
 <fieldset>
-	<form action= "continue.php" method="post">
+	<form action= "backhome.php" method="post">
 New Major:
 <select name="option">
 		<?php while ($res = $sqli->fetch_array()){
@@ -123,16 +123,13 @@ Chairperson of New Major:
 -->
 <br><br><br>
 Primary Advisor:<input  class="tb5" type="text" name="padvisor" required>
-
 <br><br><br>
 Date:<input class="tb5" type="text" name="date" required>
 <br><br><br>
-
 <input class="tb5" type="hidden" name="bnumber" value="<?php echo $_POST['bnumber'];?>" required>
-
-
 <input type="submit" value="SUBMIT" name="submit">
 </form>
+
 
 <footer class="footer">
 <p>Copyright&copy; Berea College 2015</p>

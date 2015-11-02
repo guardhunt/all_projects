@@ -48,7 +48,7 @@
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Enter Student ID Number</h2>
+<h2>Change Major Application</h2>
 <form action="recostu.php" action="recostu.php" method="post">
 Student B number
 <br><br>

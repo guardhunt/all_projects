@@ -48,7 +48,7 @@
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Enter Student ID Number</h2>
+<h2>Enter Student ID Numbe</h2>
 <form action="recordstu.php" action="recordstu.php" method="post">
 Student B number
 <br><br>
