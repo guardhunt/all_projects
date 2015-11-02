@@ -1,2 +1,2 @@
 # senior_project
-One of y senior projects -- See README file
+One of my senior projects -- See README file
