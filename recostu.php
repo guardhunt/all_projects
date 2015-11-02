@@ -96,12 +96,7 @@ $sqli =  $myseli-> query ("SELECT * FROM majors");
 
 ?>
 
-
-
-<h3>Change Major Application -- Fill Out All Sections</h3>
-
-<fieldset>
-	<form action= "backhome.php" method="post">
+<form action= "backhome.php" method="post">
 New Major:
 <select name="option">
 		<?php while ($res = $sqli->fetch_array()){
