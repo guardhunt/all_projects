@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 		$username=$_POST['username'];
 		$password=$_POST['password'];
 
-		$myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));		
+		$myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
 		$sql =  $myseli-> query ("SELECT * FROM users WHERE USERNAME= '$username' AND PASSWORD= '$password'");
 
@@ -36,8 +36,8 @@ if (isset($_POST['submit'])) {
 				header("location: index.php");
 				}
 
-				
-		
+
+
 }
 
 ?>
