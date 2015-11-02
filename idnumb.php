@@ -49,7 +49,7 @@
 
 <div class="jumbotron" id="cur">
 <h2>Enter Student ID Number</h2>
-<form action="recordstu.php" action="recordstu.php" method="post">
+<form action="recostu.php" action="recostu.php" method="post">
 Student B number
 <br><br>
 <input class="tb5" type="text" name="bnumber" required>

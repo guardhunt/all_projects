@@ -48,16 +48,91 @@
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Enter Student ID Number</h2>
-<form action="recordstu.php" action="recordstu.php" method="post">
-Student B number
-<br><br>
-<input class="tb5" type="text" name="bnumber" required>
-<br><br><br>
-<input type="submit" class="tb5" value="Continue" name="submit" required>
+<h2>Change Major Form -- Please Fill Out All Sections</h2>
+<?php
+$bnumber = $_POST['bnumber'];
+error_reporting(0);
+//Connect to database
+$myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
+
+//Run query
+$result = $myseli-> query("SELECT firstname, lastname, bnumber, MID FROM students WHERE bnumber= '$bnumber'") or die ("Could not connect to database");
+
+if ($result-> num_rows != 0){
+echo "<table border=5>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Student ID Number</th>
+<th>Present Major</th>
+</tr>";
+while($row = $result-> fetch_assoc()){
+
+$name = $row['firstname'];
+$lname = $row['lastname'];
+$dbnumber = $row['bnumber'];
+$major = $row['MID'];
+
+echo
+	"<tr>
+			<td>$name</td>
+			<td>$lname</td>
+			<td>$dbnumber</td>
+			<td>$major</td>
+		  </tr>";
+
+
+
+}
+
+echo"</table>";
+
+}
+
+$sql =  $myseli-> query ("SELECT majors.CHAIRMAN FROM majors");
+
+$sqli =  $myseli-> query ("SELECT * FROM majors");
+
+?>
+
+
+
+<h3>Change Major Form -- Please Fill out all sections of the form</h3>
+
+<fieldset>
+	<form action= "continue.php" method="post">
+New Major:
+<select name="option">
+		<?php while ($res = $sqli->fetch_array()){
+
+			echo "<option  value=".$res['MID'].">" .$res['DESCRIPTION']." </option>";
+			}
+		 ?>
+
+</select>
+<!-- <br><br><br>
+Chairperson of New Major:
+<select name="option2">
+		<?php// while ($resu = $sql->fetch_array()){
+			//echo "<option  value=".$resu['MID'].">" .$resu['CHAIRMAN']." </option>";
+			}
+		 ?>
+
+</select>
+-->
+<br><br><br>
+Primary Advisor:<input  class="tb5" type="text" name="padvisor" required>
+
+<br><br><br>
+Date:<input class="tb5" type="text" name="date" required>
+<br><br><br>
+
+<input class="tb5" type="hidden" name="bnumber" value="<?php echo $_POST['bnumber'];?>" required>
+
+
+<input type="submit" value="SUBMIT" name="submit">
 </form>
-</div><br>
 
 <div class="row marketing">
 <div class="col-lg-6">

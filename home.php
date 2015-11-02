@@ -50,7 +50,13 @@
 <div class="jumbotron" id="cur">
 <h2>Change Curriculum</h2>
 <p class="lead">Change of Advisor/Major/Minor/Concentration</p>
-<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+<select class="btn btn-lg btn-success" name="form" onchange="location = this.options[this.selectedIndex].value;">
+  <option value="header-search.php">Select...</option>
+  <option value="idnumb.php">Add Or Change Major</option>
+  <option value="somepage.php">Add Or Change Minor</option>
+  <option value="somepage.php">Change Advisor</option>
+  <option value="somepage.php">Change Primary Advisor</option>
+</select>
 </div><br>
 
 <div class="jumbotron" id="student">
