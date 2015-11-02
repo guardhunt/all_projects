@@ -1,49 +1,43 @@
 <?php
-
-//Turn off error reorting for sucurity reason
+session_start();
 error_reporting(0);
 
-//Connect to the database
-$myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
+if (isset($_POST['submit'])) {
 
-//if user presses "submit", do the following
-if(isset($_POST['submit'])){
+		$username=$_POST['username'];
+		$password=$_POST['password'];
 
-	//set variable names for the value of email and password from the form
-	$email= $_POST['email'];
-	$password= $_POST['password'];
+		$myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));		
 
-	//Run query and compare to varibales
-	$sql =  $myseli-> query ("SELECT * FROM users WHERE EMAIL= '$email' and PASSWORD= '$password'");
+		$sql =  $myseli-> query ("SELECT * FROM users WHERE USERNAME= '$username' AND PASSWORD= '$password'");
 
-	//Check to make sure we hit a row
-	$result = mysqli_num_rows($sql);
+		$result = mysqli_num_rows($sql);
 
-//If we hit a row, put all the data in an array
-if ($result !=0){
-	while ($column = mysqli_fetch_assoc($sql)) {
+		//If we hit a row, put all the data in an array
+		if ($result !=0){
+			while ($column = mysqli_fetch_assoc($sql)) {
 
-	//Set varibale names for data from the database
-	$dbemail = $column['EMAIL'];
-	$dbpassword = $column['PASSWORD'];
-	}
-	}
+					//Set varibale names for data from the database
+					$dbuser = $column['USERNAME'];
+					$dbpassword = $column['PASSWORD'];
+				}
+			}
 
-//Compare these varibales to what the user entered
-if ($email === $dbemail and $password === $dbpassword) {
+		//Compare these varibales to what the user entered
+		if ($username === $dbuser and $password === $dbpassword) {
 
-	//If they're the same, redirect to page and start a session
-	echo ("You have successfully logged in");
-	session_start();
-	//$_SESSION['sess_user'] = $email;
-	header("location: testlog.php");
+			$_SESSION['login_user']=$username;
 
-	//Else, echo this
-	}else{
-	echo ("Invalid username or password");
+			header("location: home.php");
 
-	}
+			} else {
+				$error = ("Username or Password is invalid");
+
+				header("location: index.php");
+				}
+
+				
+		
 }
+
 ?>
-
-
