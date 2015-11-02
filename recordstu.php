@@ -7,7 +7,7 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" type="image/jpg" href="img/berea_logo.jpg">
+<link rel="icon" type="image/jpg" href="img/berea_logo.jpg" class="img-circle">
 
 <!-- PHP -->
 <?php include('session.php');?>
@@ -48,16 +48,60 @@
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Enter Student ID Number</h2>
-<form action="recordstu.php" action=".php" method="post">
-Student B number
-<br><br>
-<input class="tb5" type="text" name="bnumber" required>
-<br><br><br>
-<input type="submit" class="tb5" value="Continue" name="submit" required>
+<h2>Curriculum</h2>
+<?php
+error_reporting(0);
+//Connect to database
+$myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
-</form>
+$bnumber = $_POST['bnumber'];
+
+//Run query
+$result = $myseli-> query("SELECT firstname, lastname, bnumber, MID FROM students WHERE bnumber= '$bnumber'") or die ("Could not connect to database");
+
+
+if ($result-> num_rows != 0){
+echo "<table border=5>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Student ID Number</th>
+<th>Present Major</th>
+</tr>";
+while($row = $result-> fetch_assoc()){
+
+$name = $row['firstname'];
+$lname = $row['lastname'];
+$dbnumber = $row['bnumber'];
+$major = $row['MID'];
+
+echo
+	"<tr>
+			<td>$name</td>
+			<td>$lname</td>
+			<td>$dbnumber</td>
+			<td>$major</td>
+		  </tr>";
+
+
+
+}
+
+echo"</table>";
+
+
+
+}
+
+?>
+
+
+<br><br><br>
+
+<p><a  class="tb5" href="home.php">Go Back</a></p>
+
 </div><br>
+
 
 <div class="row marketing">
 <div class="col-lg-6">
