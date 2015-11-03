@@ -1,5 +1,5 @@
 # senior_project
-One of my senior projects
+
 Web-Based Curriculum Library System
 
 Author: Roland Junior Toussaint
