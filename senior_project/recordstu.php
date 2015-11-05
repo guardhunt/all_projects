@@ -57,7 +57,7 @@ $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could 
 $bnumber = $_POST['bnumber'];
 
 //Run query
-$result = $myseli-> query("SELECT FIRSTNAME, LASTNAME, BNUMBER, MID FROM students WHERE BNUMBER= '$bnumber'") or die ("Coulded not connect to database");
+$result = $myseli-> query("SELECT * FROM students WHERE BNUMBER= '$bnumber'") or die ("Could not connect to database");
 
 
 if ($result-> num_rows != 0){
@@ -70,9 +70,9 @@ echo "<table border=5>
 </tr>";
 while($row = $result-> fetch_assoc()){
 
-$name = $row['firstname'];
-$lname = $row['lastname'];
-$dbnumber = $row['bnumber'];
+$name = $row['FIRSTNAME'];
+$lname = $row['LASTNAME'];
+$dbnumber = $row['BNUMBER'];
 $major = $row['MID'];
 
 echo

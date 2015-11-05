@@ -52,9 +52,9 @@
 <form action="recordstu.php" action="recordstu.php" method="post">
 Student B number
 <br><br>
-<input class="tb5" type="text" name="bnumber" required>
+<input type="text" name="bnumber" required>
 <br><br><br>
-<input type="submit" class="tb5" value="Continue" name="submit" required>
+<input type="submit" value="Continue" name="submit" required>
 
 </form>
 </div><br>

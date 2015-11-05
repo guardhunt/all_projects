@@ -57,7 +57,7 @@ $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could 
 
 
 //Run query
-$result = $myseli-> query("SELECT firstname, lastname, bnumber, MID FROM students WHERE bnumber= '$bnumber'") or die ("Could not connect to database");
+$result = $myseli-> query("SELECT * FROM students WHERE BNUMBER='$bnumber'") or die ("Could not connect to database");
 
 if ($result-> num_rows != 0){
 echo "<table border=5>
@@ -69,9 +69,9 @@ echo "<table border=5>
 </tr>";
 while($row = $result-> fetch_assoc()){
 
-$name = $row['firstname'];
-$lname = $row['lastname'];
-$dbnumber = $row['bnumber'];
+$name = $row['FIRSTNAME'];
+$lname = $row['LASTNAME'];
+$dbnumber = $row['BNUMBER'];
 $major = $row['MID'];
 
 echo
@@ -95,7 +95,7 @@ $sql =  $myseli-> query ("SELECT majors.CHAIRMAN FROM majors");
 $sqli =  $myseli-> query ("SELECT * FROM majors");
 
 ?>
-
+<br><br>
 <form action= "backhome.php" method="post">
 New Major:
 <select name="option">
@@ -125,7 +125,7 @@ Date:<input class="tb5" type="text" name="date" required>
 <input type="submit" value="SUBMIT" name="submit">
 </form>
 
-
+</div>
 <footer class="footer">
 <p>Copyright&copy; Berea College 2015</p>
 </footer>
