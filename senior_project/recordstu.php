@@ -50,14 +50,14 @@
 <div class="jumbotron" id="cur">
 <h2>Curriculum</h2>
 <?php
-error_reporting(0);
+error_reporting();
 //Connect to database
 $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
 $bnumber = $_POST['bnumber'];
 
 //Run query
-$result = $myseli-> query("SELECT * FROM students WHERE BNUMBER= '$bnumber'") or die ("Could not connect to database");
+$result = $myseli-> query("SELECT * FROM students, majors WHERE BNUMBER='$bnumber' AND students.CURRENTMAJOR=majors.MID")or die ("Could not connect to database");
 
 
 if ($result-> num_rows != 0){
@@ -68,12 +68,12 @@ echo "<table border=5>
 <th>Student ID Number</th>
 <th>Present Major</th>
 </tr>";
-while($row = $result-> fetch_assoc()){
+while($row = $result-> fetch_array()){
 
 $name = $row['FIRSTNAME'];
 $lname = $row['LASTNAME'];
 $dbnumber = $row['BNUMBER'];
-$major = $row['MID'];
+$major = $row['DESCRIPTION'];
 
 echo
 	"<tr>
