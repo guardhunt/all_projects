@@ -7,7 +7,7 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" type="image/jpg" href="img/berea_logo.jpg" class="img-circle">
+<link rel="icon" type="image/jpg" href="img/berea_logo.jpg">
 
 <!-- PHP -->
 <?php include('session.php');?>
@@ -48,29 +48,22 @@
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Change Curriculum</h2>
-<p class="lead">Change of Advisor/Major/Minor/Concentration</p>
-<select class="btn btn-lg btn-success" name="form" onchange="location = this.options[this.selectedIndex].value;">
-  <option value="home.php">Select...</option>
-  <option value="major.php">Add Or Change Major</option>
-  <option value="minor.php">Add Or Change Minor</option>
-  <option value="advisor.php">Change Advisor</option>
-  <option value="somepage.php">Change Primary Advisor</option>
-</select>
-</div><br>
+<h2>Change Advisor Application</h2>
+<form action="recostu.php" method="post">
+Student B number
+<br><br>
+<input  type="text" name="bnumber" required>
+<br><br><br>
+<input type="submit" value="Continue" name="submit">
 
-<div class="jumbotron" id="student">
-<h2>View Student Record</h2>
-<p class="lead">View Student  Change of Advisor/Major/Minor/Concentration</p>
-<p><a class="btn btn-lg btn-success" href="idnumber.php" role="button">View Now</a></p>
-</div>
+</form>
+</div><br>
 
 <footer class="footer">
 <p>Copyright&copy; Berea College 2015</p>
 </footer>
 
 </div> <!-- /container -->
-
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="boot/js/ie10-viewport-bug-workaround.js"></script>
