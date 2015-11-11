@@ -1,10 +1,5 @@
 <?php
-//This file is not yet implemented with the rest of the project
-//there are going to be quesries here that will insert information from the user to the database
-//I had tihs for testing purposes.
 error_reporting(0);
-
-
 
 if(isset($_POST['submit'])){
 
@@ -14,10 +9,6 @@ $bnumber= $_POST['bnumber'];
 $pmajor = $_POST['option'];
 $padvisor = $_POST['padvisor'];
 $date = $_POST['date'];
-
-
-
-
 
 $sql =  $myseli-> query ("SELECT students.SID FROM students WHERE BNUMBER = '$bnumber'");
 
@@ -48,19 +39,11 @@ if ($result1 !=0){
 
 	}
 
-
 $sqol = $myseli-> query ("INSERT INTO studentmajor (SID, MID, ADVISOR, DAT) VALUES ('$SID', '$MID', '$padvisor', '$date')");
-
-
-//$sqol = $myseli-> query ("INSERT INTO studentmajor VALUES ('$SID', '$MID', '$padvisor', '$date')");
 
 echo ("Congratulations!! Your change major form has been accepted");
 
 header("Refresh: 5; url= home.php");
-
-//$sql = $myseli-> query ("INSERT INTO students (firstname, lastname, bnumber, classification) VALUES ('$firstname', '$lastname', '$bnumber', '$class')");
-
-
 
 }
 

@@ -49,7 +49,7 @@
 
 <div class="jumbotron" id="cur">
 <h2>Change Major Application</h2>
-<form action="recostu.php" method="post">
+<form action="majorstu.php" method="post">
 Student B number
 <br><br>
 <input  type="text" name="bnumber" required>

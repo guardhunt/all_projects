@@ -40,7 +40,7 @@
 <nav>
 <ul class="nav nav-pills pull-right">
 <li role="presentation" class="active"><a href="home.php">Home</a></li>
-<li role="presentation"><a href="#student">Student</a></li>
+<li role="presentation"><a href="idnumber.php">Student</a></li>
 <li role="presentation"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
@@ -48,22 +48,80 @@
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Change Advisor Application</h2>
-<form action=".php" method="post">
-Student B number
+<h2>Change Minor Form -- Please Fill Out All Sections</h2>
+<?php
+$bnumber = $_POST['bnumber'];
+error_reporting(0);
+//Connect to database
+$myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
+
+//Run query
+$result = $myseli-> query("SELECT * FROM students WHERE BNUMBER='$bnumber'") or die ("Could not connect to database");
+
+if ($result-> num_rows != 0){
+echo "<table border=5>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Student ID Number</th>
+<th>Present Major</th>
+</tr>";
+while($row = $result-> fetch_assoc()){
+
+$name = $row['FIRSTNAME'];
+$lname = $row['LASTNAME'];
+$dbnumber = $row['BNUMBER'];
+$major = $row['MID'];
+
+echo
+	"<tr>
+			<td>$name</td>
+			<td>$lname</td>
+			<td>$dbnumber</td>
+			<td>$major</td>
+		  </tr>";
+
+
+
+}
+
+echo"</table>";
+
+}
+
+$sql =  $myseli-> query ("SELECT minors.CHAIRMAN FROM minors");
+
+$sqli =  $myseli-> query ("SELECT * FROM minors");
+
+?>
 <br><br>
-<input  type="text" name="bnumber" required>
+<form action= "backhome.php" method="post">
+New Minor:
+<select name="option">
+		<?php while ($res = $sqli->fetch_array()){
+
+			echo "<option  value=".$res['MiID'].">" .$res['DESCRIPTION']." </option>";
+			}
+		 ?>
+
+</select>
+
 <br><br><br>
-<input type="submit" value="Continue" name="submit">
-
+Primary Advisor:<input  class="tb5" type="text" name="padvisor" required>
+<br><br><br>
+Date:<input class="tb5" type="text" name="date" required>
+<br><br><br>
+<input class="tb5" type="hidden" name="bnumber" value="<?php echo $_POST['bnumber'];?>" required>
+<input type="submit" value="SUBMIT" name="submit">
 </form>
-</div><br>
 
+</div>
 <footer class="footer">
 <p>Copyright&copy; Berea College 2015</p>
 </footer>
 
 </div> <!-- /container -->
+
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="boot/js/ie10-viewport-bug-workaround.js"></script>
