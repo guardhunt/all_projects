@@ -5009,6 +5009,8 @@ a.badge:focus {
   padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
   color: inherit;
   background-color: #eee;
 }
@@ -5026,7 +5028,7 @@ a.badge:focus {
 }
 .container .jumbotron,
 .container-fluid .jumbotron {
-  border-radius: 6px;
+  border-radius: 20px;
 }
 .jumbotron .container {
   max-width: 100%;
