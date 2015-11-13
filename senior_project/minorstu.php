@@ -56,7 +56,7 @@ error_reporting(0);
 $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
 //Run query
-$result = $myseli-> query("SELECT * FROM students WHERE BNUMBER='$bnumber'") or die ("Could not connect to database");
+$result = $myseli-> query("SELECT * FROM students, majors, minors WHERE BNUMBER='$bnumber' AND students.CURRENTMAJOR=majors.MID and students.CURRENTMINOR=minors.MiID") or die ("Could not connect to database");
 
 if ($result-> num_rows != 0){
 echo "<table border=5>
@@ -65,13 +65,15 @@ echo "<table border=5>
 <th>Lastname</th>
 <th>Student ID Number</th>
 <th>Present Major</th>
+<th>Present Minor</th>
 </tr>";
 while($row = $result-> fetch_assoc()){
 
 $name = $row['FIRSTNAME'];
 $lname = $row['LASTNAME'];
 $dbnumber = $row['BNUMBER'];
-$major = $row['MID'];
+$major = $row['MDESCRIPTION'];
+$minor = $row['MiDESCRIPTION'];
 
 echo
 	"<tr>
@@ -79,6 +81,7 @@ echo
 			<td>$lname</td>
 			<td>$dbnumber</td>
 			<td>$major</td>
+			<td>$minor</td>
 		  </tr>";
 
 
@@ -95,12 +98,12 @@ $sqli =  $myseli-> query ("SELECT * FROM minors");
 
 ?>
 <br><br>
-<form action= "backhome.php" method="post">
+<form action= "backhomemi.php" method="post">
 New Minor:
 <select name="option">
 		<?php while ($res = $sqli->fetch_array()){
 
-			echo "<option  value=".$res['MiID'].">" .$res['DESCRIPTION']." </option>";
+			echo "<option  value=".$res['MiID'].">" .$res['MiDESCRIPTION']." </option>";
 			}
 		 ?>
 
