@@ -39,16 +39,16 @@
 <div class="header clearfix">
 <nav>
 <ul class="nav nav-pills pull-right">
-<li role="presentation" class="active"><a href="#cur">Home</a></li>
-<li role="presentation"><a href="#student">Student</a></li>
-<li role="presentation"><a href="logout.php">Log Out</a></li>
+	<li role="presentation" class="active"><a href="home.php">Home</a></li>
+	<li role="presentation" class="active"><a href="home.php">Student</a></li>
+	<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Curriculum Plan Library</h3>
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Curriculum</h2>
+<h2>Student's Records</h2>
 <?php
 error_reporting();
 //Connect to database
@@ -68,7 +68,7 @@ $result = $myseli-> query("SELECT * FROM studentminor, studentmajor,
 
 
 if ($result-> num_rows != 0){
-echo "<table border=5>
+echo "<table border=5 class= table>
 <tr>
 <th>Firstname</th>
 <th>Lastname</th>

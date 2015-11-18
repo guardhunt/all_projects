@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
 $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
 $bnumber= $_POST['bnumber'];
-$pminor = $_POST['option'];
+$MiID = $_POST['option'];
 $padvisor = $_POST['padvisor'];
 $date = $_POST['date'];
 
@@ -39,9 +39,9 @@ if ($result1 !=0){
 
 	}
 
-$sqol = $myseli-> query ("INSERT INTO studentminor (SID, MiID, ADVISOR, DAT) VALUES ('$SID', '$MiID', '$padvisor', '$date')");
+$sqol = $myseli-> query ("UPDATE studentminor SET SID = '$SID', MiID = '$MiID', ADVISOR = '$padvisor', DAT = '$date' WHERE SID = '$SID'");
 
-echo ("Congratulations!! Your change minor form has been sent");
+echo ("Congratulations!! Your change minor form has been sent.");
 
 header("Refresh: 5; url= home.php");
 

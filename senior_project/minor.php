@@ -39,9 +39,9 @@
 <div class="header clearfix">
 <nav>
 <ul class="nav nav-pills pull-right">
-<li role="presentation" class="active"><a href="#cur">Home</a></li>
-<li role="presentation"><a href="#student">Student</a></li>
-<li role="presentation"><a href="logout.php">Log Out</a></li>
+  <li role="presentation" class="active"><a href="home.php">Home</a></li>
+  <li role="presentation" class="active"><a href="home.php">Student</a></li>
+  <li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Curriculum Plan Library</h3>

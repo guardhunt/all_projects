@@ -39,16 +39,16 @@
 <div class="header clearfix">
 <nav>
 <ul class="nav nav-pills pull-right">
-<li role="presentation" class="active"><a href="home.php">Home</a></li>
-<li role="presentation"><a href="idnumber.php">Student</a></li>
-<li role="presentation"><a href="logout.php">Log Out</a></li>
+	<li role="presentation" class="active"><a href="home.php">Home</a></li>
+	<li role="presentation" class="active"><a href="home.php">Student</a></li>
+	<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Curriculum Plan Library</h3>
 </div>
 
 <div class="jumbotron" id="cur">
-<h2>Change Minor Form -- Please Fill Out All Sections</h2>
+<h2>Change Of Advisor Form -- Please Fill Out All Sections</h2>
 <?php
 $bnumber = $_POST['bnumber'];
 error_reporting(0);
@@ -57,22 +57,30 @@ $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could 
 
 
 //Run query
-$result = $myseli-> query("SELECT * FROM students WHERE BNUMBER='$bnumber'") or die ("Could not connect to database");
+$result = $myseli-> query("SELECT * FROM studentminor, studentmajor,
+													majors, minors, students  WHERE BNUMBER='$bnumber'
+													AND studentmajor.SID = students.SID
+													AND studentmajor.MID = majors.MID
+													AND studentminor.SID = students.SID
+													AND studentminor.MiID = minors.MiID") or die ("Could not connect to database");
+
 
 if ($result-> num_rows != 0){
-echo "<table border=5>
+echo "<table border=5 class= table>
 <tr>
 <th>Firstname</th>
 <th>Lastname</th>
 <th>Student ID Number</th>
 <th>Present Major</th>
+<th>Present Minor</th>
 </tr>";
 while($row = $result-> fetch_assoc()){
 
 $name = $row['FIRSTNAME'];
 $lname = $row['LASTNAME'];
 $dbnumber = $row['BNUMBER'];
-$major = $row['MID'];
+$major = $row['MDESCRIPTION'];
+$minor = $row['MiDESCRIPTION'];
 
 echo
 	"<tr>
@@ -80,6 +88,7 @@ echo
 			<td>$lname</td>
 			<td>$dbnumber</td>
 			<td>$major</td>
+			<td>$minor</td>
 		  </tr>";
 
 
@@ -90,32 +99,23 @@ echo"</table>";
 
 }
 
-$sql =  $myseli-> query ("SELECT minors.CHAIRMAN FROM minors");
+$sql =  $myseli-> query ("SELECT * FROM advisors");
 
-$sqli =  $myseli-> query ("SELECT * FROM minors");
+//$sqli =  $myseli-> query ("SELECT * FROM minors");
 
 ?>
 <br><br>
-<form action= "backhome.php" method="post">
-New Major:
+<form action= ".php" method="post">
+New Advisor:
 <select name="option">
-		<?php while ($res = $sqli->fetch_array()){
+		<?php while ($res = $sql->fetch_array()){
 
-			echo "<option  value=".$res['MID'].">" .$res['DESCRIPTION']." </option>";
+			echo "<option  value=".$res['AID'].">" .$res['NAME']." </option>";
 			}
 		 ?>
 
 </select>
-<!-- <br><br><br>
-Chairperson of New Major:
-<select name="option2">
-		<?php// while ($resu = $sql->fetch_array()){
-			//echo "<option  value=".$resu['MID'].">" .$resu['CHAIRMAN']." </option>";
-			}
-		 ?>
 
-</select>
--->
 <br><br><br>
 Primary Advisor:<input  class="tb5" type="text" name="padvisor" required>
 <br><br><br>

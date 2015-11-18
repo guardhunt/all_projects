@@ -39,9 +39,9 @@
 <div class="header clearfix">
 <nav>
 <ul class="nav nav-pills pull-right">
-<li role="presentation" class="active"><a href="home.php">Home</a></li>
-<li role="presentation"><a href="#student">Student</a></li>
-<li role="presentation"><a href="logout.php">Log Out</a></li>
+  <li role="presentation" class="active"><a href="home.php">Home</a></li>
+  <li role="presentation" class="active"><a href="home.php">Student</a></li>
+  <li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Curriculum Plan Library</h3>
@@ -49,7 +49,7 @@
 
 <div class="jumbotron" id="cur">
 <h2>Change Advisor Application</h2>
-<form action=".php" method="post">
+<form action="advisorstu.php" method="post">
 Student B number
 <br><br>
 <input  type="text" name="bnumber" required>

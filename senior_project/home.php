@@ -40,8 +40,8 @@
 <nav>
 <ul class="nav nav-pills pull-right">
 <li role="presentation" class="active"><a href="home.php">Home</a></li>
-<li role="presentation"><a href="#student">Student</a></li>
-<li role="presentation"><a href="logout.php">Log Out</a></li>
+<li role="presentation" class="active"><a href="#student">Student</a></li>
+<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Curriculum Plan Library</h3>
@@ -50,19 +50,19 @@
 <div class="jumbotron" id="cur">
 <h2>Change Curriculum</h2>
 <p class="lead">Change of Advisor/Major/Minor/Concentration</p>
-<select class="btn btn-lg btn-success" name="form" onchange="location = this.options[this.selectedIndex].value;">
+<select class="btn btn-primary" name="form" onchange="location = this.options[this.selectedIndex].value;">
   <option value="home.php">Select...</option>
   <option value="major.php">Add Or Change Major</option>
   <option value="minor.php">Add Or Change Minor</option>
-  <option value="advisor.php">Change Advisor</option>
-  <option value="somepage.php">Change Primary Advisor</option>
+  <option value="advisor.php">Add Or Change Advisor</option>
+  <option value="somepage.php">Add Or Change Concentration</option>
 </select>
 </div><br>
 
 <div class="jumbotron" id="student">
 <h2>View Student Record</h2>
 <p class="lead">View Student  Change of Advisor/Major/Minor/Concentration</p>
-<p><a class="btn btn-lg btn-success" href="idnumber.php" role="button">View Now</a></p>
+<p><a class="btn btn-primary" href="idnumber.php" role="button">View Now</a></p>
 </div>
 
 <footer class="footer">
