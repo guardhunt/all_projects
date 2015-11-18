@@ -57,7 +57,15 @@ $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could 
 $bnumber = $_POST['bnumber'];
 
 //Run query
-$result = $myseli-> query("SELECT * FROM studentminor, studentmajor, majors, minors, students  WHERE BNUMBER='$bnumber' AND students.SID=studentmajor.SMID AND  students.SID=studentminor.SMiID AND studentmajor.SID=majors.MID AND studentminor.SMiID=minors.MiID") or die ("Could not connect to database");
+//$result = $myseli-> query("SELECT * FROM studentminor, studentmajor, majors, minors, students  WHERE BNUMBER='$bnumber' ") or die ("Could not connect to database");
+
+$result = $myseli-> query("SELECT * FROM studentminor, studentmajor,
+													majors, minors, students  WHERE BNUMBER='$bnumber'
+													AND studentmajor.SID = students.SID
+													AND studentmajor.MID = majors.MID
+													AND studentminor.SID = students.SID
+													AND studentminor.MiID = minors.MiID") or die ("Could not connect to database");
+
 
 if ($result-> num_rows != 0){
 echo "<table border=5>

@@ -57,7 +57,13 @@ $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could 
 
 
 //Run query
-$result = $myseli-> query("SELECT * FROM students, majors, minors WHERE BNUMBER='$bnumber' AND students.CURRENTMAJOR=majors.MID and students.CURRENTMINOR=minors.MiID") or die ("Could not connect to database");
+$result = $myseli-> query("SELECT * FROM studentminor, studentmajor,
+													majors, minors, students  WHERE BNUMBER='$bnumber'
+													AND studentmajor.SID = students.SID
+													AND studentmajor.MID = majors.MID
+													AND studentminor.SID = students.SID
+													AND studentminor.MiID = minors.MiID") or die ("Could not connect to database");
+
 
 if ($result-> num_rows != 0){
 echo "<table border=5>

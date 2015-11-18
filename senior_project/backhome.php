@@ -39,9 +39,9 @@ if ($result1 !=0){
 
 	}
 
-$sqol = $myseli-> query ("INSERT INTO studentmajor (SID, MID, ADVISOR, DAT) VALUES ('$SID', '$MID', '$padvisor', '$date')");
+$sqol = $myseli-> query ("UPDATE studentmajor SET SID = '$SID', MID = '$MID', ADVISOR = '$padvisor', DAT = '$date' WHERE SID = '$SID'");
 
-echo ("Congratulations!! Your change major form has been accepted");
+echo ("Congratulations!! Your change major form has been sent.");
 
 header("Refresh: 5; url= home.php");
 
