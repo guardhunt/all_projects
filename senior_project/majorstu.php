@@ -21,6 +21,8 @@
 <!-- Custom styles for this template -->
 <link href="boot/css/jumbotron-narrow.css" rel="stylesheet">
 <link href="boot/css/bootstrap.css" rel="stylesheet">
+<link href="boot/css/tables.css" rel="stylesheet">
+
 
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -66,13 +68,13 @@ $result = $myseli-> query("SELECT * FROM studentminor, studentmajor,
 
 
 if ($result-> num_rows != 0){
-echo "<table border=5 class= table>
+echo "<table border=5 class= tables>
 <tr>
-<th>Firstname</th>
-<th>Lastname</th>
-<th>Student ID Number</th>
-<th>Present Major</th>
-<th>Present Minor</th>
+<td>Firstname</td>
+<td>Lastname</td>
+<td>Student ID Number</td>
+<td>Present Major</td>
+<td>Present Minor</td>
 </tr>";
 while($row = $result-> fetch_assoc()){
 

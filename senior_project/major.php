@@ -40,7 +40,7 @@
 <nav>
 <ul class="nav nav-pills pull-right">
   <li role="presentation" class="active"><a href="home.php">Home</a></li>
-  <li role="presentation" class="active"><a href="#student">Student</a></li>
+  <li role="presentation" class="active"><a href="home.php">Student</a></li>
   <li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
