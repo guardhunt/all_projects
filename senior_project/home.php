@@ -55,7 +55,6 @@
   <option value="major.php">Add Or Change Major</option>
   <option value="minor.php">Add Or Change Minor</option>
   <option value="advisor.php">Add Or Change Advisor</option>
-  <option value="somepage.php">Add Or Change Concentration</option>
 </select>
 </div><br>
 

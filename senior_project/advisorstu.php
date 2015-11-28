@@ -58,12 +58,14 @@ $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could 
 
 
 //Run query
-$result = $myseli-> query("SELECT * FROM studentminor, studentmajor,
+$result = $myseli-> query("SELECT * FROM advisors, studentadvisor, studentminor, studentmajor,
 													majors, minors, students  WHERE BNUMBER='$bnumber'
 													AND studentmajor.SID = students.SID
 													AND studentmajor.MID = majors.MID
 													AND studentminor.SID = students.SID
-													AND studentminor.MiID = minors.MiID") or die ("Could not connect to database");
+													AND studentminor.MiID = minors.MiID
+													AND studentadvisor.SID = students.SID
+													AND studentadvisor.AID = advisors.AID") or die ("Could not connect to database");
 
 
 if ($result-> num_rows != 0){
@@ -74,6 +76,7 @@ echo "<table border=5 class= tables>
 <td>Student ID Number</td>
 <td>Present Major</td>
 <td>Present Minor</td>
+<td>Advisor</td>
 </tr>";
 while($row = $result-> fetch_assoc()){
 
@@ -82,6 +85,7 @@ $lname = $row['LASTNAME'];
 $dbnumber = $row['BNUMBER'];
 $major = $row['MDESCRIPTION'];
 $minor = $row['MiDESCRIPTION'];
+$adv = $row['NAME'];
 
 echo
 	"<tr>
@@ -90,6 +94,7 @@ echo
 			<td>$dbnumber</td>
 			<td>$major</td>
 			<td>$minor</td>
+			<td>$adv</td>
 		  </tr>";
 
 
@@ -106,7 +111,7 @@ $sql =  $myseli-> query ("SELECT * FROM advisors");
 
 ?>
 <br><br>
-<form action= ".php" method="post">
+<form action= "backhoma.php" method="post">
 New Advisor:
 <select name="option">
 		<?php while ($res = $sql->fetch_array()){
@@ -116,11 +121,6 @@ New Advisor:
 		 ?>
 
 </select>
-
-<br><br><br>
-Primary Advisor:<input  class="tb5" type="text" name="padvisor" required>
-<br><br><br>
-Date:<input class="tb5" type="text" name="date" required>
 <br><br><br>
 <input class="tb5" type="hidden" name="bnumber" value="<?php echo $_POST['bnumber'];?>" required>
 <input type="submit" value="SUBMIT" name="submit">
