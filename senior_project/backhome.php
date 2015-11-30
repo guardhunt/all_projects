@@ -10,7 +10,7 @@ $pmajor = $_POST['option'];
 $padvisor = $_POST['padvisor'];
 $date = $_POST['date'];
 
-$sql =  $myseli-> query ("SELECT students.SID FROM students WHERE BNUMBER = '$bnumber'");
+$sql =  $myseli-> query ("SELECT * FROM students WHERE BNUMBER = '$bnumber'");
 
 $result = mysqli_num_rows($sql);
 
