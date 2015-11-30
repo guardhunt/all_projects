@@ -13,7 +13,7 @@
 <?php include('session.php');?>
 <div class="log"><b>Welcome  <?php echo $login_session; ?>. You're logged in.</b></div>
 
-<title>Berea College || Curriculum Library</title>
+<title>Berea College || Change Of Academic Discipline</title>
 
 <!-- Bootstrap core CSS -->
 <link href="boot/css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
   <li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
-<h3 class="text-primary">Berea College Curriculum Plan Library</h3>
+<h3 class="text-primary">Berea College Change Of Academic Discipline</h3>
 </div>
 
 <div class="jumbotron" id="cur">
