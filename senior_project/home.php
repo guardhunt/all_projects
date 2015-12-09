@@ -9,8 +9,9 @@
 <meta name="author" content="">
 <link rel="icon" type="image/jpg" href="img/berea_logo.jpg" class="img-circle">
 
-<!-- PHP -->
+<!-- PHP session -->
 <?php include('session.php');?>
+<!-- display session user -->
 <div class="log"><b>Welcome  <?php echo $login_session; ?>. You're logged in.</b></div>
 
 <title>Berea College || Change Of Academic Discipline</title>
@@ -22,15 +23,9 @@
 <link href="boot/css/jumbotron-narrow.css" rel="stylesheet">
 <link href="boot/css/bootstrap.css" rel="stylesheet">
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<!--Not being used-->
 <script src="boot/js/ie-emulation-modes-warning.js"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body>
@@ -38,6 +33,7 @@
 <div class="container">
 <div class="header clearfix">
 <nav>
+  <!-- nav bar buttons -->
 <ul class="nav nav-pills pull-right">
 <li role="presentation" class="active"><a href="home.php">Home</a></li>
 <li role="presentation" class="active"><a href="#student">Student</a></li>
@@ -50,11 +46,13 @@
 <div class="jumbotron" id="cur">
 <h2>Change Curriculum</h2>
 <p class="lead">Change of Advisor/Major/Minor/Concentration</p>
+
+<!-- Options to select from -->
 <select class="btn btn-primary" name="form" onchange="location = this.options[this.selectedIndex].value;">
-  <option value="home.php">Select...</option>
-  <option value="major.php">Add Or Change Major</option>
-  <option value="minor.php">Add Or Change Minor</option>
-  <option value="advisor.php">Add Or Change Advisor</option>
+<option value="home.php">Select...</option>
+<option value="major.php">Add Or Change Major</option>
+<option value="minor.php">Add Or Change Minor</option>
+<option value="advisor.php">Add Or Change Advisor</option>
 </select>
 </div><br>
 

@@ -9,8 +9,10 @@
 <meta name="author" content="">
 <link rel="icon" type="image/jpg" href="img/berea_logo.jpg">
 
-<!-- PHP -->
+<!-- PHP session-->
 <?php include('session.php');?>
+
+<!-- Display the user of the session -->
 <div class="log"><b>Welcome  <?php echo $login_session; ?>. You're logged in.</b></div>
 
 <title>Berea College || Change Of Academic Discipline</title>
@@ -23,15 +25,11 @@
 <link href="boot/css/bootstrap.css" rel="stylesheet">
 <link href="boot/css/tables.css" rel="stylesheet">
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- Not being used -->
 <script src="boot/js/ie-emulation-modes-warning.js"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+
 </head>
 
 <body>
@@ -39,10 +37,11 @@
 <div class="container">
 <div class="header clearfix">
 <nav>
+	<!-- Nav bar buttons -->
 <ul class="nav nav-pills pull-right">
-	<li role="presentation" class="active"><a href="home.php">Home</a></li>
-	<li role="presentation" class="active"><a href="home.php">Student</a></li>
-	<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
+<li role="presentation" class="active"><a href="home.php">Home</a></li>
+<li role="presentation" class="active"><a href="home.php">Student</a></li>
+<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Change Of Academic Discipline</h3>
@@ -51,22 +50,27 @@
 <div class="jumbotron" id="cur">
 <h2>Change Of Advisor Form -- Please Fill Out All Sections</h2>
 <?php
+// Get bnumber from input
 $bnumber = $_POST['bnumber'];
+
+// Turn off error reporting
 error_reporting(0);
+
 //Connect to database
 $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
 
 //Run query
 $result = $myseli-> query("SELECT * FROM advisors, studentadvisor, studentminor, studentmajor,
-													majors, minors, students  WHERE BNUMBER='$bnumber'
-													AND studentmajor.SID = students.SID
-													AND studentmajor.MID = majors.MID
-													AND studentminor.SID = students.SID
-													AND studentminor.MiID = minors.MiID
-													AND studentadvisor.SID = students.SID
-													AND studentadvisor.AID = advisors.AID") or die ("Could not connect to database");
+				majors, minors, students  WHERE BNUMBER='$bnumber'
+				AND studentmajor.SID = students.SID
+				AND studentmajor.MID = majors.MID
+				AND studentminor.SID = students.SID
+				AND studentminor.MiID = minors.MiID
+				AND studentadvisor.SID = students.SID
+				AND studentadvisor.AID = advisors.AID") or die ("Could not connect to database");
 
+// Create table
 
 if ($result-> num_rows != 0){
 echo "<table border=5 class= tables>
@@ -87,15 +91,16 @@ $major = $row['MDESCRIPTION'];
 $minor = $row['MiDESCRIPTION'];
 $adv = $row['NAME'];
 
+// Display query result in table
 echo
-	"<tr>
-			<td>$name</td>
-			<td>$lname</td>
-			<td>$dbnumber</td>
-			<td>$major</td>
-			<td>$minor</td>
-			<td>$adv</td>
-		  </tr>";
+"<tr>
+<td>$name</td>
+<td>$lname</td>
+<td>$dbnumber</td>
+<td>$major</td>
+<td>$minor</td>
+<td>$adv</td>
+</tr>";
 
 
 
@@ -105,24 +110,30 @@ echo"</table>";
 
 }
 
+// Drop down query
 $sql =  $myseli-> query ("SELECT * FROM advisors");
 
-//$sqli =  $myseli-> query ("SELECT * FROM minors");
 
 ?>
+
+<!-- Form to get info -->
+
 <br><br>
 <form action= "backhoma.php" method="post">
 New Advisor:
 <select name="option">
-		<?php while ($res = $sql->fetch_array()){
+<?php while ($res = $sql->fetch_array()){
 
-			echo "<option  value=".$res['AID'].">" .$res['NAME']." </option>";
-			}
-		 ?>
+echo "<option  value=".$res['AID'].">" .$res['NAME']." </option>";
+}
+?>
 
 </select>
 <br><br><br>
+
+<!-- Carry Bnumber over multiple pages -->
 <input class="tb5" type="hidden" name="bnumber" value="<?php echo $_POST['bnumber'];?>" required>
+
 <input type="submit" value="SUBMIT" name="submit">
 </form>
 
@@ -134,7 +145,7 @@ New Advisor:
 </div> <!-- /container -->
 
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!-- not being used -->
 <script src="boot/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

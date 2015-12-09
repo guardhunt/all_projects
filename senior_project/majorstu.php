@@ -9,8 +9,10 @@
 <meta name="author" content="">
 <link rel="icon" type="image/jpg" href="img/berea_logo.jpg">
 
-<!-- PHP -->
+<!-- PHP session-->
 <?php include('session.php');?>
+
+<!-- Display user in current session -->
 <div class="log"><b>Welcome  <?php echo $login_session; ?>. You're logged in.</b></div>
 
 <title>Berea College || Change Of Academic Discipline</title>
@@ -23,16 +25,9 @@
 <link href="boot/css/bootstrap.css" rel="stylesheet">
 <link href="boot/css/tables.css" rel="stylesheet">
 
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<!--Not being used-->
 <script src="boot/js/ie-emulation-modes-warning.js"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body>
@@ -40,10 +35,11 @@
 <div class="container">
 <div class="header clearfix">
 <nav>
+	<!-- Nav bar buttons -->
 <ul class="nav nav-pills pull-right">
-	<li role="presentation" class="active"><a href="home.php">Home</a></li>
-	<li role="presentation" class="active"><a href="home.php">Student</a></li>
-	<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
+<li role="presentation" class="active"><a href="home.php">Home</a></li>
+<li role="presentation" class="active"><a href="home.php">Student</a></li>
+<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Change Of Academic Discipline</h3>
@@ -52,8 +48,12 @@
 <div class="jumbotron" id="cur">
 <h2>Change Major Form -- Please Fill Out All Sections</h2>
 <?php
+// Set variable for bnumber that was carried over multiple pages
 $bnumber = $_POST['bnumber'];
+
+// Turn off error reporting
 error_reporting(0);
+
 //Connect to database
 $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
@@ -68,7 +68,7 @@ $result = $myseli-> query("SELECT * FROM advisors, studentadvisor, studentminor,
 													AND studentadvisor.SID = students.SID
 													AND studentadvisor.AID = advisors.AID") or die ("Could not connect to database");
 
-
+// Table
 if ($result-> num_rows != 0){
 echo "<table border=5 class= tables>
 <tr>
@@ -89,14 +89,14 @@ $minor = $row['MiDESCRIPTION'];
 $adv = $row['NAME'];
 
 echo
-	"<tr>
-			<td>$name</td>
-			<td>$lname</td>
-			<td>$dbnumber</td>
-			<td>$major</td>
-			<td>$minor</td>
-			<td>$adv</td>
-		  </tr>";
+"<tr>
+<td>$name</td>
+<td>$lname</td>
+<td>$dbnumber</td>
+<td>$major</td>
+<td>$minor</td>
+<td>$adv</td>
+</tr>";
 
 
 
@@ -106,32 +106,26 @@ echo"</table>";
 
 }
 
+// Run second query
 $sql =  $myseli-> query ("SELECT majors.CHAIRMAN FROM majors");
 
+// Run third query
 $sqli =  $myseli-> query ("SELECT * FROM majors");
 
 ?>
 <br><br>
+<!-- Form -->
 <form action= "backhome.php" method="post">
 New Major:
 <select name="option">
-		<?php while ($res = $sqli->fetch_array()){
+<?php while ($res = $sqli->fetch_array()){
 
-			echo "<option  value=".$res['MID'].">" .$res['MDESCRIPTION']." </option>";
-			}
-		 ?>
-
-</select>
-<!-- <br><br><br>
-Chairperson of New Major:
-<select name="option2">
-		<?php// while ($resu = $sql->fetch_array()){
-			//echo "<option  value=".$resu['MID'].">" .$resu['CHAIRMAN']." </option>";
-			}
-		 ?>
+echo "<option  value=".$res['MID'].">" .$res['MDESCRIPTION']." </option>";
+}
+?>
 
 </select>
--->
+
 <br><br><br>
 Primary Advisor:<input  class="tb5" type="text" name="padvisor" required>
 <br><br><br>

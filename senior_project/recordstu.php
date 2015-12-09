@@ -9,8 +9,10 @@
 <meta name="author" content="">
 <link rel="icon" type="image/jpg" href="img/berea_logo.jpg" class="img-circle">
 
-<!-- PHP -->
+<!-- PHP session -->
 <?php include('session.php');?>
+
+<!-- Display user in current session -->
 <div class="log"><b>Welcome  <?php echo $login_session; ?>. You're logged in.</b></div>
 
 <title>Berea College || Change Of Academic Discipline</title>
@@ -23,15 +25,9 @@
 <link href="boot/css/bootstrap.css" rel="stylesheet">
 <link href="boot/css/tables.css" rel="stylesheet">
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<!--Not being used-->
 <script src="boot/js/ie-emulation-modes-warning.js"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body>
@@ -39,10 +35,11 @@
 <div class="container">
 <div class="header clearfix">
 <nav>
+	<!-- Nav bar buttons -->
 <ul class="nav nav-pills pull-right">
-	<li role="presentation" class="active"><a href="home.php">Home</a></li>
-	<li role="presentation" class="active"><a href="home.php">Student</a></li>
-	<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
+<li role="presentation" class="active"><a href="home.php">Home</a></li>
+<li role="presentation" class="active"><a href="home.php">Student</a></li>
+<li role="presentation" class="active"><a href="logout.php">Log Out</a></li>
 </ul>
 </nav>
 <h3 class="text-primary">Berea College Change Of Academic Discipline</h3>
@@ -51,15 +48,16 @@
 <div class="jumbotron" id="cur">
 <h2>Student's Records</h2>
 <?php
-error_reporting();
+// Turn off error reporting
+error_reporting(0);
+
 //Connect to database
 $myseli = NEW MySQLi('localhost', 'root', '', 'test') or die(mysql_error('Could not establish connection'));
 
+// Set variable
 $bnumber = $_POST['bnumber'];
 
 //Run query
-//$result = $myseli-> query("SELECT * FROM studentminor, studentmajor, majors, minors, students  WHERE BNUMBER='$bnumber' ") or die ("Could not connect to database");
-
 $result = $myseli-> query("SELECT * FROM advisors, studentadvisor, studentminor, studentmajor,
 													majors, minors, students  WHERE BNUMBER='$bnumber'
 													AND studentmajor.SID = students.SID
@@ -68,8 +66,7 @@ $result = $myseli-> query("SELECT * FROM advisors, studentadvisor, studentminor,
 													AND studentminor.MiID = minors.MiID
 													AND studentadvisor.SID = students.SID
 													AND studentadvisor.AID = advisors.AID") or die ("Could not connect to database");
-
-
+// Table
 if ($result-> num_rows != 0){
 echo "<table class= tables>
 <tr>
@@ -90,14 +87,14 @@ $minor = $row['MiDESCRIPTION'];
 $adv = $row['NAME'];
 
 echo
-	"<tr>
-			<td>$name</td>
-			<td>$lname</td>
-			<td>$dbnumber</td>
-			<td>$major</td>
-			<td>$minor</td>
-			<td>$adv</td>
-		  </tr>";
+"<tr>
+<td>$name</td>
+<td>$lname</td>
+<td>$dbnumber</td>
+<td>$major</td>
+<td>$minor</td>
+<td>$adv</td>
+</tr>";
 
 
 
@@ -112,7 +109,7 @@ echo"</table>";
 
 
 <br><br><br>
-
+<!-- "go back" button -->
 <p><a  class="tb5" href="home.php">Go Back</a></p>
 
 </div><br>
